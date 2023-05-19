@@ -24,48 +24,56 @@ Here's an example MATLAB and Arduino codes snippets to send angles to the Arduin
 
 # MATLAB
 ```matlab
-% Create a serial port object
-s = serial('COMX', 'BaudRate', 9600); % Replace "COMX" with the appropriate port name
-
-% Open the serial port
-fopen(s);
-
-% Send the array of floats
-data = [1.23, 4.56, 7.89];
-fprintf(s, '%f ', data);
-
-% Close the serial port
-fclose(s);
+clc;
+clear all;
+%%
+S = serial('COM4','BaudRate',9600,'timeOut',.05);
+fopen(S)
+arr = 10:20:80;
+fprintf(S, 'rrr');
+pause(2);
+disp('sent dummy');
+for i = 1:length(arr)
+%     Upwm = ceil(arr(i));
+%     fprintf(S,'2');
+%     pause(0.001)
+%     fprintf(S,num2str(Upwm)); 
+    fprintf(S, strcat('t', num2str(arr(i)), 'z'));
+    pause(1);
+end
+fprintf(S, 'rrr');
+disp('sent dummy');
+pause(2);
+fclose(S);
 ```
 Ensure that you replace "COMX" with the appropriate serial port name that corresponds to the Arduino board. You can find the port name in the Arduino IDE under Tools -> Port.
 
 # Arduino
 ```C++
-// Define the size of the array
-#define ARRAY_SIZE 3
+#include <Servo.h>
 
-// Define the array
-float data[ARRAY_SIZE];
-
+Servo myservo;  // create servo object to control a servo
 void setup() {
-  // Initialize the serial communication
-  Serial.begin(9600);
+  Serial.begin(9600);  // Initialize the Serial port
+  myservo.attach(7);  // attaches the servo on pin 7 to the servo object
+  pinMode(6, OUTPUT);
+  pinMode(5, OUTPUT);
+
+
+
 }
 
 void loop() {
-  // Wait for data to be available on the serial port
-  while (Serial.available() < ARRAY_SIZE * sizeof(float));
-
-  // Read the data from the serial port
-  Serial.readBytes((char*)data, ARRAY_SIZE * sizeof(float));
-
-  // Print the received data
-  for (int i = 0; i < ARRAY_SIZE; i++) {
-    Serial.print(data[i]);
-    Serial.print(" ");
+  if (Serial.available() > 5)
+  {
+    char myChar = Serial.read();
+    if (myChar == 't')
+    {
+      float myFloat = Serial.parseFloat();
+      myservo.write(myFloat);
+    }
   }
 }
-
 
 ```
 ## Running the System
