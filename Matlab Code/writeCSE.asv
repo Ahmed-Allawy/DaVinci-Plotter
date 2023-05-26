@@ -1,0 +1,19 @@
+
+function [shape] = writeCSE()
+    
+shape = [
+     % C
+     getCurvePoints(-12.5,17.5,5,45*pi/180,315*pi/180,30);
+    
+     % S
+     getCurvePoints(0,20,2.5,45*pi/180,270*pi/180,20);
+     getCurvePoints(0,15,2.5,-135*pi/180,90*pi/180,20);
+     
+     % E 
+     getLinePoints(22.5,7.5,22.5,14.5,9);  % upper -
+     getLinePoints(17.5,7.5,17.5,14.5,9);  % |
+     getLinePoints(22.5,7.5,22.5,14.5,9);  % lower -
+     getLinePoints(0,16,0,10,9);  % middle -
+    ];
+
+end
