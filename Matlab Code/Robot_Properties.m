@@ -23,9 +23,9 @@ Robot = SerialLink(L);
 %          getLinePoints(0,16,0,10,9);
 %          getCurvePoints(0,0,10,90*pi/180,5*pi/180,20);];
 % 
-path = writeCSE;
+shape = writeCSE;
 %points = [4, 3, 20, 10,-33, 10, 4, 2];
-% path = validateShapePoints(shape,min,max);
+path = validateShapePoints(shape,min,max);
 %% draw shape
 figure;
 e = 0;
