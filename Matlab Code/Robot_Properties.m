@@ -9,8 +9,8 @@ l1 = 9; %link 1
 l2 = 9; %link 2
 l3 = 12.5; %link 3
 % workspace
-min = l2;
-max = 30;
+min = 13; % should be large than real value
+max = 28; % should be smaller than real value
 %% robot creation
 L(1) = Link([0,0,0,pi/2]); 
 L(2) = Link([0,0,l1,0]); 
@@ -18,20 +18,15 @@ L(3) = Link([0,0,l2,0]);
 L(4) = Link([0,0,l3,0]); 
 Robot = SerialLink(L);
 %% get points of shape
-% shape =[ getLinePoints(10,0,25,0,19);
-%          getCurvePoints(0,0,25,0*pi/180,90*pi/180,50);
-%          getLinePoints(0,16,0,10,9);
-%          getCurvePoints(0,0,10,90*pi/180,5*pi/180,20);];
-% 
-shape = drawLogo();
-%points = [4,3, 20, 10,-33, 10, 4, 2];
+shape = getImagePoints('letter.png',-55,60,0.65);
+%points = [4, 3, 20, 10,-33, 10, 4, 2];
 path = validateShapePoints(shape,min,max);
 %% draw shape
 figure;
 e = 0;
 for i = 1:2:length(path)
     e = e+1;
-    disp("point#");
+    disp('point#');
     disp(e);
     [th0,th1,th2,th3] = angles_calculations(path(i,1), path(i,2), z, l1, l2, l3);
     %% plot robot
@@ -50,3 +45,4 @@ for i = 1:2:length(path)
          pause(0.2);
      end
 end
+ Robot.plot([0 th1 th2 th3]);

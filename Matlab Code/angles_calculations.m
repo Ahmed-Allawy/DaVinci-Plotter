@@ -27,7 +27,7 @@ c=0;
 % 2- unwanted angles th(1,2,3)
 while((a <= pi/4)&&(th1 > pi || th1 < 0)||(th2 > pi/2 || th2 < -pi/2)||(th3 > pi/2 || th3 < -pi/2)|| (~(isreal(th1) && isreal(th2) && isreal(th3))&& l5 < 0.95*(l1+l2+l3)))
     c=c+1;
-    disp("c = ");
+    disp('c = ');
     disp(c);
      a = a + 0.1;
        l4=(((z + sin(pi - a) * l3)^2)+((((x^2 + y^2)^0.5) + cos(pi - a) * l3)^2))^0.5;% l4
