@@ -13,37 +13,9 @@ a4 = 70.00;
 arr = [a1,a2,a3,a4];
 arr2 = [15,20,13,40];
 sendAngles(S,arr);
-
-while S.BytesAvailable == 0
-end
-%data = fscanf(S,'%c');
-flushinput(S);
-flushoutput(S);
-
 sendAngles(S,arr2);
-
-while S.BytesAvailable == 0
-end
-%data = fscanf(S,'%c');
-flushinput(S);
-flushoutput(S);
-
 sendAngles(S,arr);
-
-while S.BytesAvailable == 0
-end
-%data = fscanf(S,'%c');
-flushinput(S);
-flushoutput(S);
-
 sendAngles(S,arr2);
-
-while S.BytesAvailable == 0
-end
-%data = fscanf(S,'%c');
-flushinput(S);
-flushoutput(S);
-
 sendAngles(S,arr);
 
 %while true
