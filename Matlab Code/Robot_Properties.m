@@ -18,7 +18,6 @@ L(3) = Link([0,0,l2,0]);
 L(4) = Link([0,0,l3,0]); 
 Robot = SerialLink(L);
 %% get points of shape
-
 shape = getImagePoints('letter.png',-55,60,0.65);
 %points = [4, 3, 20, 10,-33, 10, 4, 2];
 path = validateShapePoints(shape,min,max);
